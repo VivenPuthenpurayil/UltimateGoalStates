@@ -44,7 +44,7 @@ public class LocalizationTest extends LinearOpMode {
             telemetry.addData("heading", poseEstimate.getHeading());
 
 
-
+/*
             List<Double> wheelPositions = odometry.getWheelPositions();
 
             telemetry.addData("left: ", wheelPositions.get(0));
@@ -52,6 +52,7 @@ public class LocalizationTest extends LinearOpMode {
             telemetry.addData("front: ", wheelPositions.get(2));
 
             telemetry.update();
+*/
         }
     }
 }
