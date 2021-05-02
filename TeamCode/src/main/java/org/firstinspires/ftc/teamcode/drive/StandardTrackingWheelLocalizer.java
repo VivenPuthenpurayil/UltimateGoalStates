@@ -26,6 +26,7 @@ import java.util.List;
  *    \--------------/
  *
  */
+
 @Config
 public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer {
     public static double TICKS_PER_REV = 1440;
@@ -40,6 +41,10 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
 
     private Encoder leftEncoder, rightEncoder, frontEncoder;
 
+//    public static void main(String[] args) {
+//        StandardTrackingWheelLocalizer c = new
+//    }
+
     public StandardTrackingWheelLocalizer(HardwareMap hardwareMap) {
         super(Arrays.asList(
                 new Pose2d(0, LATERAL_DISTANCE / 2, 0), // left
@@ -48,12 +53,14 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
         ));
 
         leftEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "leftEncoder"));
-        rightEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "rightEncoder"));
-        frontEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "frontEncoder"));
+        rightEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "claw"));
+        frontEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "collection"));
 
         // TODO: reverse any encoders using Encoder.setDirection(Encoder.Direction.REVERSE) - QUESTIONABLE
 
-        frontEncoder.setDirection(Encoder.Direction.REVERSE);
+//        frontEncoder.setDirection(Encoder.Direction.REVERSE);
+        leftEncoder.setDirection(Encoder.Direction.REVERSE);
+        rightEncoder.setDirection(Encoder.Direction.REVERSE);
 
     }
 

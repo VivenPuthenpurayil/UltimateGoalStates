@@ -26,8 +26,10 @@ public class CurrentTeleop extends TeleOpControl {
         boolean move_to_pos = false;
         double angle = 0;
 
-
         setup(runtime, Goal.setupType.teleop);
+
+        rob.lifter.setPosition(.90);
+        sleep(500);
 
         waitForStart();
 
@@ -94,13 +96,13 @@ public class CurrentTeleop extends TeleOpControl {
                     rob.driveTrainMovement(0.3, Goal.movements.backward);
                 }
                 else if (g(4)) {
-                    rob.driveTrainMovement(0.3, Goal.movements.tr);
-                }else if (g(5)) {
-                    rob.driveTrainMovement(0.3, Goal.movements.tl);
-                }else if (g(6)) {
-                    rob.driveTrainMovement(0.3, Goal.movements.bl);
-                }else if (g(7)) {
                     rob.driveTrainMovement(0.3, Goal.movements.br);
+                }else if (g(5)) {
+                    rob.driveTrainMovement(0.3, Goal.movements.bl);
+                }else if (g(6)) {
+                    rob.driveTrainMovement(0.3, Goal.movements.tl);
+                }else if (g(7)) {
+                    rob.driveTrainMovement(0.3, Goal.movements.tr);
                 }
                 else if (g(8)) {
                     rob.driveTrainMovement(.3, Goal.movements.ccw);
