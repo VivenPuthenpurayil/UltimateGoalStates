@@ -25,9 +25,14 @@ public class ImuTEst extends AutonomousControl {
         telemetry.update();
 
         if (opModeIsActive()) {
-            rob.driveTrainEncoderMovement(1, 15, 20, 0, Goal.movements.ccw);
             angles = rob.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-            rob.teleturn((float) (Math.abs(angles.firstAngle)), Goal.turnside.cw, 0.9, Goal.axis.center);
+            if (angles.firstAngle < 0) {
+                rob.teleturn((float) (Math.abs(angles.firstAngle)), Goal.turnside.cw, 0.9, Goal.axis.center);
+            }
+            else if (angles.firstAngle > 0) {
+                rob.teleturn((float) (Math.abs(angles.firstAngle)), Goal.turnside.ccw, 0.9, Goal.axis.center);
+
+            }
 
 
 
@@ -38,5 +43,4 @@ public class ImuTEst extends AutonomousControl {
         }
     }
 }
-
 
