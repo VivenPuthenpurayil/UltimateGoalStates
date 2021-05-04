@@ -38,6 +38,8 @@ public class CurrentTeleop extends TeleOpControl {
             double distanceRight = rob.Right.getDistance(DistanceUnit.CM);
             telemetry.addData("back", "%.2f cm", rob.Back.getDistance(DistanceUnit.CM));
             telemetry.addData("angle", "%.2f",IMUOrientB);
+            telemetry.addData("orient", rob.getDirection());
+
             IMUOrientB = rob.getDirection();
 
             // telemetry.addData("angle", "%.2f",(Math.atan((distanceFront-distanceBack)/6.6142)*180)/(3.1415));
@@ -87,13 +89,13 @@ public class CurrentTeleop extends TeleOpControl {
             else {
 
                 if (g(0)) {
-                    rob.driveTrainMovement(0.5, Goal.movements.left);
-                } else if (g(2)) {
-                    rob.driveTrainMovement(0.5, Goal.movements.right);
-                } else if (g(3)) {
                     rob.driveTrainMovement(0.3, Goal.movements.forward);
-                } else if (g(1)) {
+                } else if (g(2)) {
                     rob.driveTrainMovement(0.3, Goal.movements.backward);
+                } else if (g(3)) {
+                    rob.driveTrainMovement(0.3, Goal.movements.right);
+                } else if (g(1)) {
+                    rob.driveTrainMovement(0.3, Goal.movements.left);
                 }
                 else if (g(4)) {
                     rob.driveTrainMovement(0.3, Goal.movements.br);
@@ -256,13 +258,17 @@ public class CurrentTeleop extends TeleOpControl {
                     continue;
                 }
                 angles = rob.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-                angles = rob.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-                //rob.teleturn((float) (Math.abs(angles.firstAngle)), Goal.turnside.cw, 0.9, Goal.axis.center);
+                if (angles.firstAngle < 0) {
+                    rob.teleturn((float) (Math.abs(angles.firstAngle)), Goal.turnside.cw, 0.9, Goal.axis.center);
+                }
+                else if (angles.firstAngle > 0) {
+                    rob.teleturn((float) (Math.abs(angles.firstAngle)), Goal.turnside.ccw, 0.9, Goal.axis.center);
 
-                rob.driveTrainEncoderMovement(1,(131 - rob.Back.getDistance((DistanceUnit.CM)))/2.54,20,0,Goal.movements.forward);
-                rob.stopDrivetrain();
-                rob.driveTrainEncoderMovement(1,((rob.Right.getDistance((DistanceUnit.CM))-45)/2.54),20,0,Goal.movements.right);
-                rob.stopDrivetrain();
+                }
+////                rob.driveTrainEncoderMovement(1,(131 - rob.Back.getDistance((DistanceUnit.CM)))/2.54,20,0,Goal.movements.forward);
+////                rob.stopDrivetrain();
+////                rob.driveTrainEncoderMovement(1,((rob.Right.getDistance((DistanceUnit.CM))-45)/2.54),20,0,Goal.movements.right);
+////                rob.stopDrivetrain();
                 move_to_pos = false;
             }
         }
