@@ -38,13 +38,13 @@ public class LocalizationTest extends LinearOpMode {
 
             drive.update();
 
-            Pose2d poseEstimate = drive.getPoseEstimate();
-            telemetry.addData("x", poseEstimate.getX());
-            telemetry.addData("y", poseEstimate.getY());
-            telemetry.addData("heading", poseEstimate.getHeading());
-            telemetry.update();
+//            Pose2d poseEstimate = drive.getPoseEstimate();
+//            telemetry.addData("x", poseEstimate.getX());
+//            telemetry.addData("y", poseEstimate.getY());
+//            telemetry.addData("heading", poseEstimate.getHeading());
+//            telemetry.update();
 
-/*
+
             List<Double> wheelPositions = odometry.getWheelPositions();
 
             telemetry.addData("left: ", wheelPositions.get(0));
@@ -52,7 +52,7 @@ public class LocalizationTest extends LinearOpMode {
             telemetry.addData("front: ", wheelPositions.get(2));
 
             telemetry.update();
-*/
+
         }
     }
 }

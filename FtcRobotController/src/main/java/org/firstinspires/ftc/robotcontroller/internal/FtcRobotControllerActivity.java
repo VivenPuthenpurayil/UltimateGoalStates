@@ -387,6 +387,7 @@ public class FtcRobotControllerActivity extends Activity
     checkPreferredChannel();
 
     FtcDashboard.start();
+//    FtcDashboard.start(true);
   }
 
   protected UpdateUI createUpdateUI() {
