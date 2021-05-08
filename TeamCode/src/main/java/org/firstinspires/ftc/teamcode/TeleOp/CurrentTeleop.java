@@ -266,6 +266,9 @@ public class CurrentTeleop extends TeleOpControl {
                     rob.teleturn((float) (Math.abs(angles.firstAngle)), Goal.turnside.ccw, 0.9, Goal.axis.center);
 
                 }
+
+                sleep(200);
+
 ////                rob.driveTrainEncoderMovement(1,(131 - rob.Back.getDistance((DistanceUnit.CM)))/2.54,20,0,Goal.movements.forward);
 ////                rob.stopDrivetrain();
 ////                rob.driveTrainEncoderMovement(1,((rob.Right.getDistance((DistanceUnit.CM))-45)/2.54),20,0,Goal.movements.right);
