@@ -310,37 +310,28 @@ public class CurrentTeleop extends TeleOpControl {
 
     public void moveJimmy(double distance, boolean less, Goal.movements dir, Goal rob, ModernRoboticsI2cRangeSensor sensor) throws InterruptedException {
         double dist = sensor.getDistance(DistanceUnit.INCH);
-        double speed = findSpeed(distance, dist);
-
         if (less && dist < distance) {
             do{
-                rob.driveTrainMovement(speed, dir);
-                dist = sensor.getDistance(DistanceUnit.INCH);
-                speed = findSpeed(distance, dist);
-                telemetry.addData("dist ", dist);
-                telemetry.update();
-            }
-            while(dist > 1000 || dist < distance || Double.compare(dist, Double.NaN) == 0 && opModeIsActive());
-
+                drive(distance, dir, rob, sensor);
+            } while(dist > 1000 || dist < distance || Double.compare(dist, Double.NaN) == 0 && opModeIsActive());
             rob.stopDrivetrain();
         }
-        else if (!less && dist > distance) {
+        else if (!less && sensor.getDistance(DistanceUnit.INCH) > distance) {
             do{
-                rob.driveTrainMovement(speed, dir);
-                dist = sensor.getDistance(DistanceUnit.INCH);
-                speed = findSpeed(distance, dist);
-                telemetry.addData("dist ", dist);
-                telemetry.update();
-            }
-            while(dist > 1000 || dist > distance || Double.compare(dist, Double.NaN) == 0 && opModeIsActive());
-
+                drive(distance, dir, rob, sensor);
+            } while(dist > 1000 || dist > distance || Double.compare(dist, Double.NaN) == 0 && opModeIsActive());
             rob.stopDrivetrain();
         }
         sleep(200);
     }
 
+    public void drive(double distance, Goal.movements dir, Goal rob, ModernRoboticsI2cRangeSensor sensor) throws InterruptedException {
+        double dist = sensor.getDistance(DistanceUnit.INCH);
+        double speed = findSpeed(distance, dist);
+        rob.driveTrainMovement(speed, dir);
+    }
+
     public double findSpeed(double distance, double dist) {
         return Math.min(Math.max(0.25, (Math.abs(distance - dist)/30)), 1);
     }
-
 }
