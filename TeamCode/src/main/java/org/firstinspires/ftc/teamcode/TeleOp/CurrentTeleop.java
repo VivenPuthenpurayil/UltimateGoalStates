@@ -337,7 +337,7 @@ public class CurrentTeleop extends TeleOpControl {
     }
 
     public double findSpeed(double distance, double dist) {
-        return Math.min(Math.max(0.25, (Math.abs(distance - dist)/60)), 1);
+        return Math.min(Math.max(0.25, (Math.abs(distance - dist)/30)), 1);
     }
 
 }
