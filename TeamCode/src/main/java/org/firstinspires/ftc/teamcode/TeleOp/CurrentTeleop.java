@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -269,6 +270,14 @@ public class CurrentTeleop extends TeleOpControl {
 ////                rob.stopDrivetrain();
 ////                rob.driveTrainEncoderMovement(1,((rob.Right.getDistance((DistanceUnit.CM))-45)/2.54),20,0,Goal.movements.right);
 ////                rob.stopDrivetrain();
+
+                moveJimmy(153/2.54, true, Goal.movements.forward, rob, rob.Back);
+                moveJimmy(153/2.54, false, Goal.movements.backward, rob, rob.Back);
+                moveJimmy(141/2.54, true, Goal.movements.backward, rob, rob.Front);
+                moveJimmy(141/2.54, false, Goal.movements.forward, rob, rob.Front);
+                moveJimmy(45/2.54, true, Goal.movements.left, rob, rob.Right);
+                moveJimmy(45/2.54, false, Goal.movements.right, rob, rob.Right);
+
                 move_to_pos = false;
             }
         }
@@ -298,52 +307,39 @@ public class CurrentTeleop extends TeleOpControl {
         sleep(200);
     }
 
-}
+    public void moveJimmy(double distance, boolean less, Goal.movements dir, Goal rob, ModernRoboticsI2cRangeSensor sensor) throws InterruptedException {
+        double dist = sensor.getDistance(DistanceUnit.INCH);
+        double speed = findSpeed(dist);
 
-/*
-        if(gamepad2.x) {
-                rob.motorFL.setPower(0);
-                rob.motorBL.setPower(0);
-                rob.motorFR.setPower(0);
-                rob.motorBR.setPower(0);
-                sleep(250);
-                rob.lifter.setPosition(.84);
-                sleep(500);
-                rob.fly.setPower(-0.66);
-                sleep(1000);
-                for (int i = 0; i <= 2; i++) {
-
-                    if(gamepad2.b){
-                        emergencystop();
-                        break;
-                    }
-
-                    rob.fly.setPower(-0.8);
-                    sleep(200);
-
-                    if(gamepad2.b){
-                        emergencystop();
-                        break;
-                    }
-
-                    rob.whack.setPosition(0.6);
-                    sleep(1000);
-
-                    if(gamepad2.b){
-                        emergencystop();
-                        break;
-                    }
-
-                    rob.whack.setPosition(0);
-                    sleep(1000);
-
-                    if(gamepad2.b){
-                        emergencystop();
-                        break;
-                    }
-                }
-                rob.fly.setPower(0);
-                rob.lifter.setPosition(.98);
-                sleep(500);
+        if (less && dist < distance) {
+            do{
+                rob.driveTrainMovement(speed, dir);
+                dist = sensor.getDistance(DistanceUnit.INCH);
+                speed = findSpeed(dist);
+                telemetry.addData("dist ", dist);
+                telemetry.update();
             }
- */
+            while(dist > 1000 || dist < distance || Double.compare(dist, Double.NaN) == 0 && opModeIsActive());
+
+            rob.stopDrivetrain();
+        }
+        else if (dist > distance) {
+            do{
+                rob.driveTrainMovement(speed, dir);
+                dist = sensor.getDistance(DistanceUnit.INCH);
+                speed = findSpeed(dist);
+                telemetry.addData("dist ", dist);
+                telemetry.update();
+            }
+            while(dist > 1000 || dist > distance || Double.compare(dist, Double.NaN) == 0 && opModeIsActive());
+
+            rob.stopDrivetrain();
+        }
+        sleep(200);
+    }
+
+    public double findSpeed(double dist) {
+        return Math.min(Math.max(0.1, dist/60), 1);
+    }
+
+}
