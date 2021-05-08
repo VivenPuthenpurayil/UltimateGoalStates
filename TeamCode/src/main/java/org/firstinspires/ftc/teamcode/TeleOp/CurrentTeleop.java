@@ -271,12 +271,10 @@ public class CurrentTeleop extends TeleOpControl {
 ////                rob.driveTrainEncoderMovement(1,((rob.Right.getDistance((DistanceUnit.CM))-45)/2.54),20,0,Goal.movements.right);
 ////                rob.stopDrivetrain();
 
-                moveJimmy(153/2.54, true, Goal.movements.forward, rob, rob.Back);
-                moveJimmy(153/2.54, false, Goal.movements.backward, rob, rob.Back);
-                moveJimmy(141/2.54, true, Goal.movements.backward, rob, rob.Front);
-                moveJimmy(141/2.54, false, Goal.movements.forward, rob, rob.Front);
-                moveJimmy(45/2.54, true, Goal.movements.left, rob, rob.Right);
-                moveJimmy(45/2.54, false, Goal.movements.right, rob, rob.Right);
+                moveJimmy(153/2.54, Goal.movements.forward, rob, rob.Back);
+                moveJimmy(153/2.54, Goal.movements.backward, rob, rob.Back);
+                moveJimmy(45/2.54, Goal.movements.left, rob, rob.Right);
+                moveJimmy(45/2.54, Goal.movements.right, rob, rob.Right);
 
                 move_to_pos = false;
             }
@@ -307,11 +305,11 @@ public class CurrentTeleop extends TeleOpControl {
         sleep(200);
     }
 
-    public void moveJimmy(double distance, boolean less, Goal.movements dir, Goal rob, ModernRoboticsI2cRangeSensor sensor) throws InterruptedException {
+    public void moveJimmy(double distance, Goal.movements dir, Goal rob, ModernRoboticsI2cRangeSensor sensor) throws InterruptedException {
         double dist = sensor.getDistance(DistanceUnit.INCH);
         double speed = findSpeed(dist);
 
-        if (less && dist < distance) {
+        if (dist < distance) {
             do{
                 rob.driveTrainMovement(speed, dir);
                 dist = sensor.getDistance(DistanceUnit.INCH);
@@ -339,7 +337,7 @@ public class CurrentTeleop extends TeleOpControl {
     }
 
     public double findSpeed(double dist) {
-        return Math.min(Math.max(0.1, dist/60), 1);
+        return Math.min(Math.max(0.1, dist/30), 1);
     }
 
 }
