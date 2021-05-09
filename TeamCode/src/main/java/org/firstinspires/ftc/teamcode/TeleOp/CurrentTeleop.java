@@ -312,23 +312,24 @@ public class CurrentTeleop extends TeleOpControl {
         double dist = sensor.getDistance(DistanceUnit.INCH);
         if (less && dist < distance) {
             do{
-                drive(distance, dir, rob, sensor);
+                dist = drive(distance, dir, rob, sensor);
             } while(dist > 1000 || dist < distance || Double.compare(dist, Double.NaN) == 0 && opModeIsActive());
             rob.stopDrivetrain();
         }
-        else if (!less && sensor.getDistance(DistanceUnit.INCH) > distance) {
+        else if (!less && dist > distance) {
             do{
-                drive(distance, dir, rob, sensor);
+                dist = drive(distance, dir, rob, sensor);
             } while(dist > 1000 || dist > distance || Double.compare(dist, Double.NaN) == 0 && opModeIsActive());
             rob.stopDrivetrain();
         }
         sleep(200);
     }
 
-    public void drive(double distance, Goal.movements dir, Goal rob, ModernRoboticsI2cRangeSensor sensor) throws InterruptedException {
+    public double drive(double distance, Goal.movements dir, Goal rob, ModernRoboticsI2cRangeSensor sensor) throws InterruptedException {
         double dist = sensor.getDistance(DistanceUnit.INCH);
         double speed = findSpeed(distance, dist);
         rob.driveTrainMovement(speed, dir);
+        return sensor.getDistance(DistanceUnit.INCH);
     }
 
     public double findSpeed(double distance, double dist) {
