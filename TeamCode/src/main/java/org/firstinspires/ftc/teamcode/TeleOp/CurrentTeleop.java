@@ -308,6 +308,7 @@ public class CurrentTeleop extends TeleOpControl {
         sleep(200);
     }
 
+        // if true, do movements opposite sensor. If false, do movement same as sensor
     public void moveJimmy(double distance, boolean less, Goal.movements dir, Goal rob, ModernRoboticsI2cRangeSensor sensor) throws InterruptedException {
         double dist = sensor.getDistance(DistanceUnit.INCH);
         if (less && dist < distance) {
