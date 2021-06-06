@@ -173,4 +173,10 @@ public class Constants {
     public static final String Lefts = "Left";
     public static final String Fronts = "Front";
     public static final String colorSensorS = "color";
+
+    public static final String shooterLeftS = "shooterLeft";
+    public static final String shooterRightS = "shooterRight";
+
+    public static final String feederLeftS = "feederLeft";
+    public static final String feederRightS = "feederRight";
 }
