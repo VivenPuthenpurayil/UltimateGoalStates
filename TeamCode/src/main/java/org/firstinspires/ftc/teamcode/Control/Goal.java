@@ -56,6 +56,10 @@ import static org.firstinspires.ftc.teamcode.Control.Constants.motorFLS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.motorFRS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.pincher;
 import static org.firstinspires.ftc.teamcode.Control.Constants.whacker;
+import static org.firstinspires.ftc.teamcode.Control.Constants.feederLeftS;
+import static org.firstinspires.ftc.teamcode.Control.Constants.feederRightS;
+import static org.firstinspires.ftc.teamcode.Control.Constants.shooterLeftS;
+import static org.firstinspires.ftc.teamcode.Control.Constants.shooterRightS;
 
 //import static org.firstinspires.ftc.teamcode.Control.Constants.rightBacks;
 //import static org.firstinspires.ftc.teamcode.Control.Constants.rightFronts;
@@ -84,6 +88,8 @@ public class Goal {
                     setupWobbleGoalSystem();
                     setupUltra();
                     setupIMU();
+                    setupShooter();
+
                     break;
                 case teleop:
                     setupDrivetrain();
@@ -93,6 +99,7 @@ public class Goal {
                     setupWobbleGoalSystem();
                     setupUltra();
                     setupIMU();
+                    setupShooter();
                     break;
                 case storage:
                     setupStorage();
@@ -216,6 +223,12 @@ public class Goal {
     public ModernRoboticsI2cRangeSensor Back, Right, Front, Left;
 
     public BNO055IMUImpl imu;
+    public DcMotor shooterLeft;
+    public DcMotor shooterRight;
+
+    public CRServo feederLeft;
+    public CRServo feederRight;
+
 
 
 //    public ModernRoboticsI2cRangeSensor leftSense;
@@ -290,6 +303,13 @@ public class Goal {
 
 
     }
+    public void setupShooter() throws InterruptedException{
+        shooterLeft = motor(shooterLeftS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT);
+        shooterRight = motor(shooterRightS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT);
+        feederLeft = servo(feederLeftS, CRServo.Direction.FORWARD, 0);
+        feederRight = servo(feederRightS, DcMotorSimple.Direction.FORWARD, 0);
+    }
+
 
     public void setupWobbleGoalSystem() throws InterruptedException {
         claw = motor(claws, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.BRAKE);
@@ -1056,7 +1076,11 @@ public class Goal {
         linearUp(1),
         linearDown(-1),
         clawOut(-1),
-        clawIn(1);
+        clawIn(1),
+        shootForward(1, -1),
+        shootBackward(-1, 1),
+        feederForward(1, -1),
+        feederBackward(-1, 1);
 
 
 

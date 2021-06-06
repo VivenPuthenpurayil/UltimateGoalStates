@@ -266,10 +266,12 @@ public class CurrentTeleop extends TeleOpControl {
                     rob.teleturn((float) (Math.abs(angles.firstAngle)), Goal.turnside.ccw, 0.9, Goal.axis.center);
 
                 }
-////                rob.driveTrainEncoderMovement(1,(131 - rob.Back.getDistance((DistanceUnit.CM)))/2.54,20,0,Goal.movements.forward);
-////                rob.stopDrivetrain();
-////                rob.driveTrainEncoderMovement(1,((rob.Right.getDistance((DistanceUnit.CM))-45)/2.54),20,0,Goal.movements.right);
-////                rob.stopDrivetrain();
+                while ((131 - rob.Back.getDistance((DistanceUnit.CM)))/2.54> 0) {
+                    rob.driveTrainMovement(Math.max(.1,131 - rob.Back.getDistance((DistanceUnit.CM))/100), Goal.movements.forward);
+                }
+                rob.stopDrivetrain();
+                rob.driveTrainEncoderMovement(1,((rob.Right.getDistance((DistanceUnit.CM))-45)/2.54),20,0,Goal.movements.right);
+                rob.stopDrivetrain();
 
                 moveJimmy(153/2.54, true, Goal.movements.forward, rob, rob.Back);
                 moveJimmy(153/2.54, false, Goal.movements.backward, rob, rob.Back);
@@ -308,6 +310,18 @@ public class CurrentTeleop extends TeleOpControl {
     public void moveJimmy(double distance, boolean less, Goal.movements dir, Goal rob, ModernRoboticsI2cRangeSensor sensor) throws InterruptedException {
         double dist = sensor.getDistance(DistanceUnit.INCH);
         double speed = findSpeed(dist);
+        while (Math.abs(dist - distance) > 0){
+
+            if (dist < distance){
+                rob.driveTrainMovement(Math.max(75/dist,.1), Goal.movements.forward);
+            }
+            else {
+                rob.driveTrainMovement(Math.max(dist/260,.1), Goal.movements.backward);
+            }
+            dist = sensor.getDistance(DistanceUnit.INCH);
+
+        }
+
 
         if (less && dist < distance) {
             do{
