@@ -58,6 +58,7 @@ import static org.firstinspires.ftc.teamcode.Control.Constants.motorFLS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.motorFRS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.pincher;
 import static org.firstinspires.ftc.teamcode.Control.Constants.shooterLeftS;
+import static org.firstinspires.ftc.teamcode.Control.Constants.collectionS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.shooterRightS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.whacker;
 
@@ -126,7 +127,6 @@ public class Goal {
                 case shooter:
                     setupShooter();
                     break;
-
             }
 
             i.append(type.name()).append(" ");
@@ -216,6 +216,7 @@ public class Goal {
 
     public DcMotor shooterLeft;
     public DcMotor shooterRight;
+    public DcMotor collectionN;
 
     public CRServo feederLeft;
     public CRServo feederRight;
@@ -268,9 +269,6 @@ public class Goal {
 
 
     }
-
-
-
 
     public void setupDrivetrain() throws InterruptedException {
         motorFR = motor(motorFRS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.BRAKE);
@@ -327,17 +325,10 @@ public class Goal {
     public void setupShooter() throws InterruptedException{
         shooterLeft = motor(shooterLeftS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT);
         shooterRight = motor(shooterRightS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT);
-        feederLeft = servo(feederLeftS, CRServo.Direction.FORWARD, 0);
+        collectionN = motor(collectionS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT);
+        feederLeft = servo(feederLeftS, CRServo.Direction.REVERSE, 0);
         feederRight = servo(feederRightS, DcMotorSimple.Direction.FORWARD, 0);
     }
-//    public void setupMapping() throws InterruptedException {
-//
-//        leftSense = ultrasonicSensor(leftSenseS);
-//        //frontSense = ultrasonicSensor(frontSenseS);
-//        rightfrontSense = therealUS(rightfrontSenseS);
-//        rightbackSense = therealUS(rightbackSenseS);
-//        backSense = ultrasonicSensor(backSenseS);
-//    }
 
     public void setupVuforia() throws InterruptedException {
         float phoneXRotate    = 0;
