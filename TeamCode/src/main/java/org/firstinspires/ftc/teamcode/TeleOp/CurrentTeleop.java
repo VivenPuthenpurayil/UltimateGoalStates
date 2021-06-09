@@ -1,3 +1,4 @@
+/*
 package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
@@ -337,3 +338,4 @@ public class CurrentTeleop extends TeleOpControl {
         return Math.min(Math.max(0.25, (Math.abs(distance - dist)/30)), 1);
     }
 }
+ */

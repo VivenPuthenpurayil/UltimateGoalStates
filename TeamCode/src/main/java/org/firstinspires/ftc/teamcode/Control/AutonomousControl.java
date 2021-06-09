@@ -32,9 +32,9 @@ public abstract class AutonomousControl extends Central {
         //drop wobble goal
         rob.pinch.setPosition(0.8);
         sleep(500);
-        rob.claw.setPower(0.3);
+      //  rob.claw.setPower(0.3);
         sleep(250);
-        rob.claw.setPower(0);
+     //   rob.claw.setPower(0);
         sleep(250);
 
         //move back to pick up second wobble goal
@@ -57,15 +57,15 @@ public abstract class AutonomousControl extends Central {
 
         // pick up second wobble goal
         sleep(250);
-        rob.claw.setPower(-0.3);
+    //    rob.claw.setPower(-0.3);
         sleep(300);
-        rob.claw.setPower(0);
+      //  rob.claw.setPower(0);
         sleep(500);
         rob.pinch.setPosition(0);
         sleep(400);
-        rob.claw.setPower(-0.4);
+      //  rob.claw.setPower(-0.4);
         sleep(350);
-        rob.claw.setPower(0);
+   //     rob.claw.setPower(0);
         sleep(250);
 
         // move backwards to go back to red square
@@ -76,9 +76,9 @@ public abstract class AutonomousControl extends Central {
         //drop wobble goal
         rob.pinch.setPosition(0.8);
         sleep(250);
-        rob.claw.setPower(0.3);
+    //    rob.claw.setPower(0.3);
         sleep(500);
-        rob.claw.setPower(0);
+    //    rob.claw.setPower(0);
         sleep(250);
 
         // start flywheel
@@ -142,9 +142,9 @@ public abstract class AutonomousControl extends Central {
         //drop wobble goal
         rob.pinch.setPosition(0.8);
         sleep(500);
-        rob.claw.setPower(0.3);
+   //     rob.claw.setPower(0.3);
         sleep(250);
-        rob.claw.setPower(0);
+    //    rob.claw.setPower(0);
         sleep(250);
 
         //move back to pick up second wobble goal
@@ -165,15 +165,15 @@ public abstract class AutonomousControl extends Central {
 
         // pick up second wobble goal
         sleep(250);
-        rob.claw.setPower(-0.3);
+     //   rob.claw.setPower(-0.3);
         sleep(300);
-        rob.claw.setPower(0);
+    //    rob.claw.setPower(0);
         sleep(500);
         rob.pinch.setPosition(0);
         sleep(400);
-        rob.claw.setPower(-0.4);
+     //   rob.claw.setPower(-0.4);
         sleep(350);
-        rob.claw.setPower(0);
+      //  rob.claw.setPower(0);
         sleep(250);
 
         //return to red square
@@ -183,9 +183,9 @@ public abstract class AutonomousControl extends Central {
         //drop wobble goal
         rob.pinch.setPosition(0.8);
         sleep(500);
-        rob.claw.setPower(0.3);
+  //      rob.claw.setPower(0.3);
         sleep(500);
-        rob.claw.setPower(0);
+    //    rob.claw.setPower(0);
         sleep(250);
 
         // move backwards a bit so you dont hit the wobble goal
@@ -224,9 +224,9 @@ public abstract class AutonomousControl extends Central {
         //drop wobble goal
         rob.pinch.setPosition(0.8);
         sleep(500);
-        rob.claw.setPower(0.3);
+    //    rob.claw.setPower(0.3);
         sleep(250);
-        rob.claw.setPower(0);
+       // rob.claw.setPower(0);
         sleep(250);
 
         //move back to pick up second wobble goal
@@ -249,15 +249,15 @@ public abstract class AutonomousControl extends Central {
 
         // pick up second wobble goal
         sleep(250);
-        rob.claw.setPower(-0.3);
+   //     rob.claw.setPower(-0.3);
         sleep(300);
-        rob.claw.setPower(0);
+   //     rob.claw.setPower(0);
         sleep(500);
-        rob.pinch.setPosition(0);
+    //    rob.pinch.setPosition(0);
         sleep(400);
-        rob.claw.setPower(-0.4);
+     //   rob.claw.setPower(-0.4);
         sleep(350);
-        rob.claw.setPower(0);
+    //    rob.claw.setPower(0);
         sleep(250);
 
         // move backwards to go back to red square
@@ -268,9 +268,9 @@ public abstract class AutonomousControl extends Central {
         //drop wobble goal
         rob.pinch.setPosition(0.8);
         sleep(250);
-        rob.claw.setPower(0.3);
+   //     rob.claw.setPower(0.3);
         sleep(500);
-        rob.claw.setPower(0);
+     //   rob.claw.setPower(0);
         sleep(250);
 
         // move backwards a bit so you dont hit the wobble goal
@@ -306,16 +306,16 @@ public abstract class AutonomousControl extends Central {
         //drop wobble goal
         rob.pinch.setPosition(0.8);
         sleep(200);
-        rob.claw.setPower(0.4);
+    //    rob.claw.setPower(0.4);
         sleep(200);
-        rob.claw.setPower(0);
+     //   rob.claw.setPower(0);
         sleep(100);
     }
 
     public void pickupgoal() {
-        rob.claw.setPower(-0.4);
+   //     rob.claw.setPower(-0.4);
         sleep(300);
-        rob.claw.setPower(0);
+   //     rob.claw.setPower(0);
         sleep(100);
         rob.pinch.setPosition(0);
         sleep(400);

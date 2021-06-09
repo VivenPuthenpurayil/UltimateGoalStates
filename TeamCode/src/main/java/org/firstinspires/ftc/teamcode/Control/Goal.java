@@ -222,7 +222,7 @@ public class Goal {
 
     public DcMotor fly;
     public DcMotor collection;
-    public DcMotor claw;
+    public Servo claw;
     public Servo whack;
     public Servo pinch;
     public Servo lifter;
@@ -305,10 +305,10 @@ public class Goal {
     }
 
     public void setupWobbleGoalSystem() throws InterruptedException {
-        claw = motor(claws, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.BRAKE);
+        claw = servo(claws, Servo.Direction.FORWARD, 0, 1, 0.2);
         pinch = servo(pincher, Servo.Direction.FORWARD, 0, 1, 0.2);
 
-        encoder(EncoderMode.OFF, claw);
+    //    encoder(EncoderMode.OFF, claw);
 
     }
 
