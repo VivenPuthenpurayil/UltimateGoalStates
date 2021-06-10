@@ -47,6 +47,8 @@ import static org.firstinspires.ftc.teamcode.Control.Constants.Lefts;
 import static org.firstinspires.ftc.teamcode.Control.Constants.Rights;
 import static org.firstinspires.ftc.teamcode.Control.Constants.claws;
 import static org.firstinspires.ftc.teamcode.Control.Constants.collections;
+import static org.firstinspires.ftc.teamcode.Control.Constants.feederLeftS;
+import static org.firstinspires.ftc.teamcode.Control.Constants.feederRightS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.flys;
 import static org.firstinspires.ftc.teamcode.Control.Constants.imuS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.lifters;
@@ -55,6 +57,9 @@ import static org.firstinspires.ftc.teamcode.Control.Constants.motorBRS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.motorFLS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.motorFRS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.pincher;
+import static org.firstinspires.ftc.teamcode.Control.Constants.shooterLeftS;
+import static org.firstinspires.ftc.teamcode.Control.Constants.collectionS;
+import static org.firstinspires.ftc.teamcode.Control.Constants.shooterRightS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.whacker;
 import static org.firstinspires.ftc.teamcode.Control.Constants.feederLeftS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.feederRightS;
@@ -126,7 +131,9 @@ public class Goal {
                 case openCV:
                     setupOpenCV();
                     break;
-
+                case shooter:
+                    setupShooter();
+                    break;
             }
 
             i.append(type.name()).append(" ");
@@ -214,6 +221,13 @@ public class Goal {
     public DcMotor motorBR;
     public DcMotor motorBL;
 
+    public DcMotor shooterLeft;
+    public DcMotor shooterRight;
+    public DcMotor collectionN;
+
+    public CRServo feederLeft;
+    public CRServo feederRight;
+
     public DcMotor fly;
     public DcMotor collection;
     public DcMotor claw;
@@ -268,9 +282,6 @@ public class Goal {
 
 
     }
-
-
-
 
     public void setupDrivetrain() throws InterruptedException {
         motorFR = motor(motorFRS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.BRAKE);
@@ -330,14 +341,14 @@ public class Goal {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
     }
-//    public void setupMapping() throws InterruptedException {
-//
-//        leftSense = ultrasonicSensor(leftSenseS);
-//        //frontSense = ultrasonicSensor(frontSenseS);
-//        rightfrontSense = therealUS(rightfrontSenseS);
-//        rightbackSense = therealUS(rightbackSenseS);
-//        backSense = ultrasonicSensor(backSenseS);
-//    }
+
+    public void setupShooter() throws InterruptedException{
+        shooterLeft = motor(shooterLeftS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT);
+        shooterRight = motor(shooterRightS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT);
+        collectionN = motor(collectionS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT);
+        feederLeft = servo(feederLeftS, CRServo.Direction.REVERSE, 0);
+        feederRight = servo(feederRightS, DcMotorSimple.Direction.FORWARD, 0);
+    }
 
     public void setupVuforia() throws InterruptedException {
         float phoneXRotate    = 0;
@@ -1039,7 +1050,7 @@ public class Goal {
         ON, OFF;
     }
     public enum setupType{
-        autonomous, teleop, collectionsystem, storage, flywheel, drivetrain_system, wobblegoal, ultra, imu, openCV;
+        autonomous, teleop, collectionsystem, storage, flywheel, drivetrain_system, wobblegoal, ultra, imu, shooter, openCV;
     }
 
 

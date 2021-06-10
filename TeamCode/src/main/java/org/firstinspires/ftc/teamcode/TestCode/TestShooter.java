@@ -8,33 +8,23 @@ import org.firstinspires.ftc.teamcode.Control.Goal;
 
 @Autonomous(name="Test Shooter", group = "basic")
 public class TestShooter extends AutonomousControl {
+
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
     public void runOpMode() throws InterruptedException {
 
-        setup(runtime, Goal.setupType.autonomous);
+        setup(runtime, Goal.setupType.shooter);
         telemetry.addLine("Start!");
         telemetry.update();
 
-        if (opModeIsActive()){
-            rob.fly.setPower(-.62);
-            sleep(3000);
-            rob.lifter.setPosition(.86);
-            sleep(250);
-            for (int i = 0; i <= 2; i++) {
-                rob.fly.setPower(-0.64);
-                sleep(300);
-                rob.whack.setPosition(0.42);
-                sleep(500);
-                rob.whack.setPosition(0);
-                sleep(750);
-            }
-            rob.fly.setPower(0);
-            rob.lifter.setPosition(.98);
-            sleep(200);
+        while (opModeIsActive()) {
+            rob.collectionN.setPower(0.8);
+            rob.shooterRight.setPower(-0.8);
+            rob.shooterLeft.setPower(-0.8);
+            rob.feederRight.setPower(0.5);
+            rob.feederLeft.setPower(0.5);
         }
-
 
     }
 }
