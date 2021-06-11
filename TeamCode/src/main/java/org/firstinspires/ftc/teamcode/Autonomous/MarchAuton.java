@@ -1,3 +1,8 @@
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
+
 /*
         * Copyright (c) 2020 OpenFTC Team
         *
@@ -18,7 +23,7 @@
         * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
         * SOFTWARE.
         */
-
+/*
         package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -588,6 +593,7 @@ public class MarchAuton extends AutonomousControl
         /*
          * An enum to define the skystone position
          */
+/*
         public enum RingPosition
         {
             FOUR,
@@ -599,12 +605,13 @@ public class MarchAuton extends AutonomousControl
         /*
          * Some color constants
          */
-        static final Scalar BLUE = new Scalar(0, 0, 255);
-        static final Scalar GREEN = new Scalar(0, 255, 0);
+      //  static final Scalar BLUE = new Scalar(0, 0, 255);
+       // static final Scalar GREEN = new Scalar(0, 255, 0);
 
         /*
          * The core values which define the location and size of the sample regions
          */
+/*
         static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(100,98);
 
         static final int REGION_WIDTH = 100;
@@ -623,6 +630,7 @@ public class MarchAuton extends AutonomousControl
         /*
          * Working variables
          */
+/*
         Mat region1_Cb;
         Mat YCrCb = new Mat();
         Mat Cb = new Mat();
@@ -635,6 +643,7 @@ public class MarchAuton extends AutonomousControl
          * This function takes the RGB frame, converts to YCrCb,
          * and extracts the Cb channel to the 'Cb' variable
          */
+/*
         void inputToCb(Mat input)
         {
             Imgproc.cvtColor(input, YCrCb, Imgproc.COLOR_RGB2YCrCb);
@@ -691,3 +700,4 @@ public class MarchAuton extends AutonomousControl
         }
     }
 }
+*/

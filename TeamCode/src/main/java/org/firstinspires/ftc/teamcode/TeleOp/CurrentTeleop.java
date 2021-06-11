@@ -1,3 +1,4 @@
+/*
 package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
@@ -266,12 +267,13 @@ public class CurrentTeleop extends TeleOpControl {
                     rob.teleturn((float) (Math.abs(angles.firstAngle)), Goal.turnside.ccw, 0.9, Goal.axis.center);
 
                 }
-                while ((131 - rob.Back.getDistance((DistanceUnit.CM)))/2.54> 0) {
-                    rob.driveTrainMovement(Math.max(.1,131 - rob.Back.getDistance((DistanceUnit.CM))/100), Goal.movements.forward);
-                }
-                rob.stopDrivetrain();
-                rob.driveTrainEncoderMovement(1,((rob.Right.getDistance((DistanceUnit.CM))-45)/2.54),20,0,Goal.movements.right);
-                rob.stopDrivetrain();
+
+                sleep(200);
+
+////                rob.driveTrainEncoderMovement(1,(131 - rob.Back.getDistance((DistanceUnit.CM)))/2.54,20,0,Goal.movements.forward);
+////                rob.stopDrivetrain();
+////                rob.driveTrainEncoderMovement(1,((rob.Right.getDistance((DistanceUnit.CM))-45)/2.54),20,0,Goal.movements.right);
+////                rob.stopDrivetrain();
 
                 moveJimmy(153/2.54, true, Goal.movements.forward, rob, rob.Back);
                 moveJimmy(153/2.54, false, Goal.movements.backward, rob, rob.Back);
@@ -307,51 +309,33 @@ public class CurrentTeleop extends TeleOpControl {
         sleep(200);
     }
 
+        // if true, do movements opposite sensor. If false, do movement same as sensor
     public void moveJimmy(double distance, boolean less, Goal.movements dir, Goal rob, ModernRoboticsI2cRangeSensor sensor) throws InterruptedException {
         double dist = sensor.getDistance(DistanceUnit.INCH);
-        double speed = findSpeed(dist);
-        while (Math.abs(dist - distance) > 0){
-
-            if (dist < distance){
-                rob.driveTrainMovement(Math.max(75/dist,.1), Goal.movements.forward);
-            }
-            else {
-                rob.driveTrainMovement(Math.max(dist/260,.1), Goal.movements.backward);
-            }
-            dist = sensor.getDistance(DistanceUnit.INCH);
-
-        }
-
-
         if (less && dist < distance) {
             do{
-                rob.driveTrainMovement(speed, dir);
-                dist = sensor.getDistance(DistanceUnit.INCH);
-                speed = findSpeed(dist);
-                telemetry.addData("dist ", dist);
-                telemetry.update();
-            }
-            while(dist > 1000 || dist < distance || Double.compare(dist, Double.NaN) == 0 && opModeIsActive());
-
+                dist = drive(distance, dir, rob, sensor);
+            } while(dist > 1000 || dist < distance || Double.compare(dist, Double.NaN) == 0 && opModeIsActive());
             rob.stopDrivetrain();
         }
-        else if (dist > distance) {
+        else if (!less && dist > distance) {
             do{
-                rob.driveTrainMovement(speed, dir);
-                dist = sensor.getDistance(DistanceUnit.INCH);
-                speed = findSpeed(dist);
-                telemetry.addData("dist ", dist);
-                telemetry.update();
-            }
-            while(dist > 1000 || dist > distance || Double.compare(dist, Double.NaN) == 0 && opModeIsActive());
-
+                dist = drive(distance, dir, rob, sensor);
+            } while(dist > 1000 || dist > distance || Double.compare(dist, Double.NaN) == 0 && opModeIsActive());
             rob.stopDrivetrain();
         }
         sleep(200);
     }
 
-    public double findSpeed(double dist) {
-        return Math.min(Math.max(0.1, dist/30), 1);
+    public double drive(double distance, Goal.movements dir, Goal rob, ModernRoboticsI2cRangeSensor sensor) throws InterruptedException {
+        double dist = sensor.getDistance(DistanceUnit.INCH);
+        double speed = findSpeed(distance, dist);
+        rob.driveTrainMovement(speed, dir);
+        return sensor.getDistance(DistanceUnit.INCH);
     }
 
+    public double findSpeed(double distance, double dist) {
+        return Math.min(Math.max(0.25, (Math.abs(distance - dist)/30)), 1);
+    }
 }
+ */

@@ -58,8 +58,9 @@ import static org.firstinspires.ftc.teamcode.Control.Constants.motorFLS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.motorFRS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.pincher;
 import static org.firstinspires.ftc.teamcode.Control.Constants.shooterLeftS;
-import static org.firstinspires.ftc.teamcode.Control.Constants.collectionS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.shooterRightS;
+import static org.firstinspires.ftc.teamcode.Control.Constants.collectLowS;
+import static org.firstinspires.ftc.teamcode.Control.Constants.collectServoS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.whacker;
 import static org.firstinspires.ftc.teamcode.Control.Constants.feederLeftS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.feederRightS;
@@ -223,14 +224,15 @@ public class Goal {
 
     public DcMotor shooterLeft;
     public DcMotor shooterRight;
-    public DcMotor collectionN;
 
     public CRServo feederLeft;
     public CRServo feederRight;
 
     public DcMotor fly;
     public DcMotor collection;
-    public DcMotor claw;
+    public DcMotor collectLow;
+    public Servo collectServo;
+    public Servo claw;
     public Servo whack;
     public Servo pinch;
     public Servo lifter;
@@ -302,8 +304,11 @@ public class Goal {
 
     public void setupCollection() throws InterruptedException {
         collection = motor(collections, DcMotorSimple.Direction.REVERSE, DcMotor.ZeroPowerBehavior.BRAKE);
+        collectLow = motor(collectLowS, DcMotorSimple.Direction.REVERSE, DcMotor.ZeroPowerBehavior.BRAKE);
+        collectServo = servo(collectServoS, Servo.Direction.FORWARD, 0, 1 , 1);
 
         encoder(EncoderMode.ON, collection);
+        encoder(EncoderMode.ON, collectLow);
 
     }
 
@@ -323,10 +328,10 @@ public class Goal {
 
 
     public void setupWobbleGoalSystem() throws InterruptedException {
-        claw = motor(claws, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.BRAKE);
+        claw = servo(claws, Servo.Direction.FORWARD, 0, 1, 0.2);
         pinch = servo(pincher, Servo.Direction.FORWARD, 0, 1, 0.2);
 
-        encoder(EncoderMode.OFF, claw);
+    //    encoder(EncoderMode.OFF, claw);
 
     }
 
@@ -345,7 +350,6 @@ public class Goal {
     public void setupShooter() throws InterruptedException{
         shooterLeft = motor(shooterLeftS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT);
         shooterRight = motor(shooterRightS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT);
-        collectionN = motor(collectionS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT);
         feederLeft = servo(feederLeftS, CRServo.Direction.REVERSE, 0);
         feederRight = servo(feederRightS, DcMotorSimple.Direction.FORWARD, 0);
     }
