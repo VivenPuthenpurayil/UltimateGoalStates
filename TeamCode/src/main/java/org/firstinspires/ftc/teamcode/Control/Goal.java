@@ -85,9 +85,7 @@ public class Goal {
             switch (type) {
                 case autonomous:
                     setupDrivetrain();
-                    setupStorage();
                     setupCollection();
-                    setupFly();
                     setupWobbleGoalSystem();
                     setupUltra();
                     setupIMU();
@@ -95,23 +93,21 @@ public class Goal {
                     break;
                 case teleop:
                     setupDrivetrain();
-                    setupStorage();
                     setupCollection();
-                    setupFly();
                     setupWobbleGoalSystem();
                     setupUltra();
                     setupShooter();
                     setupIMU();
                     break;
                 case storage:
-                    setupStorage();
-                    setupFly();
+                    setupCollection();
                     break;
                 case wobblegoal:
                     setupWobbleGoalSystem();
                     break;
                 case flywheel:
-                    setupFly();
+                    setupCollection();
+                    setupShooter();
                     break;
                 case collectionsystem:
                     setupCollection();
@@ -284,13 +280,14 @@ public class Goal {
         motorDriveMode(EncoderMode.ON, motorFR, motorFL, motorBR, motorBL);
     }
 
-
+/*
     public void setupStorage() throws InterruptedException {
         whack = servo(whacker, Servo.Direction.FORWARD, 0, 1, 0);
         lifter = servo(lifters, Servo.Direction.FORWARD, 0, 1 , 1);
         // teleop .98
         encoder(EncoderMode.OFF, fly);
     }
+*/
 
     public void setupCollection() throws InterruptedException {
         collection = motor(collections, DcMotorSimple.Direction.REVERSE, DcMotor.ZeroPowerBehavior.BRAKE);
@@ -302,20 +299,17 @@ public class Goal {
 
     }
 
+/*
     public void setupFly() throws InterruptedException {
         fly = motor(flys, DcMotorSimple.Direction.REVERSE, DcMotor.ZeroPowerBehavior.FLOAT);
-
         encoder(EncoderMode.OFF, fly);
-
-
     }
+*/
 
     public void setupWobbleGoalSystem() throws InterruptedException {
         claw = servo(claws, Servo.Direction.FORWARD, 0, 1, 1);
         pinch = servo(pincher, Servo.Direction.FORWARD, 0, 1, 0.2);
-
         //    encoder(EncoderMode.OFF, claw);
-
     }
 
     public void setupUltra() throws InterruptedException {

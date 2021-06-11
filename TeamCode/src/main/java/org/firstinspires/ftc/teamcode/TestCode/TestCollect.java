@@ -17,10 +17,10 @@ public class TestCollect extends AutonomousControl {
         telemetry.update();
 
         while (opModeIsActive()) {
-            rob.collection.setPower(.8);
-            rob.collectLow.setPower(.8);
-            rob.feederRight.setPower(0.5);
-            rob.feederLeft.setPower(0.5);
+            rob.collection.setPower(0.8);
+            rob.collectLow.setPower(0.8);
+//            rob.feederRight.setPower(0.5);
+//            rob.feederLeft.setPower(0.5);
         }
 
     }

@@ -153,14 +153,14 @@ public class Constants {
 
 
     public static final String claws = "claw";
-   // public static final String grabbers = "grabber";M
+    // public static final String grabbers = "grabber";M
     public static final String lifters = "lifter";
 
     public static final String pincher = "pinch";
     public static final String whacker = "whacker";
     //public static final String ultraFrontS = "ultraFront";
     public static final String leftSenseS = "leftSense";
-//   // public static final String frontSenseS = "frontSense";
+    //   // public static final String frontSenseS = "frontSense";
 //    public static final String rightfrontSenseS = "rightfrontSense";
 //    public static final String rightbackSenseS = "rightbackSense";
 //    public static final String backSenseS = "backSense";
@@ -169,7 +169,7 @@ public class Constants {
 
     public static final String leftFronts = "leftFront";
     public static final String Backs = "Back";
-//    public static final String rightFronts = "rightFront";
+    //    public static final String rightFronts = "rightFront";
 //    public static final String rightBacks = "rightBack";
     public static final String Rights = "Right";
     public static final String Lefts = "Left";

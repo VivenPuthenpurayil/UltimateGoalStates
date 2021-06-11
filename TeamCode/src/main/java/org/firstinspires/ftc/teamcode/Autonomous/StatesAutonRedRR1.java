@@ -1,3 +1,5 @@
+package org.firstinspires.ftc.teamcode.Autonomous;
+
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
@@ -23,8 +25,6 @@ import org.opencv.imgproc.Imgproc;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-/*
-        package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
@@ -40,8 +40,17 @@ import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-@Autonomous(name="March Auton", group = "basic")
-public class MarchAuton extends AutonomousControl
+@Autonomous(name="States Auton Red Right 1", group = "basic")
+
+/*
+
+    Original Path with 1 wobble goal
+    UNTESTED
+
+ */
+
+
+public class StatesAutonRedRR1 extends AutonomousControl
 {
     SkystoneDeterminationPipeline pipeline;
 
@@ -94,17 +103,6 @@ public class MarchAuton extends AutonomousControl
             while(distanceBack >1000 || distanceBack < 33 || Double.compare(distanceBack, Double.NaN) == 0 && opModeIsActive());
 
             rob.stopDrivetrain();
-
-//            do{
-//                rob.driveTrainMovement(speed, Goal.movements.left);
-//                distanceRight = rob.Right.getDistance(DistanceUnit.INCH);
-//                telemetry.addData("cm Back", "%.2f cm", distanceRight);
-//                telemetry.update();
-//
-//            }
-//            while(distanceRight >1000 || distanceRight < 6 || Double.compare(distanceRight, Double.NaN) == 0 && opModeIsActive());
-//
-//            rob.stopDrivetrain();
 
             sleep(100);
 
@@ -171,10 +169,10 @@ public class MarchAuton extends AutonomousControl
                 rob.stopDrivetrain();
 
                 //pickupgoal();
-                rob.claw.setPower(-0.4);
+                rob.claw.setPosition(1);
                 sleep(200);
-                rob.claw.setPower(0);
-                sleep(100);
+                rob.claw.setPosition(0);
+                sleep(200);
 
                 do{
                     rob.driveTrainMovement(speed, Goal.movements.forward);
@@ -338,10 +336,10 @@ public class MarchAuton extends AutonomousControl
                 rob.stopDrivetrain();
 
                 //pickupgoal();
-                rob.claw.setPower(-0.4);
+                rob.claw.setPosition(1);
                 sleep(200);
-                rob.claw.setPower(0);
-                sleep(100);
+                rob.claw.setPosition(0);
+                sleep(200);
 
                 do{
                     rob.driveTrainMovement(speed2, Goal.movements.forward);
@@ -481,10 +479,10 @@ public class MarchAuton extends AutonomousControl
                 rob.stopDrivetrain();
 
                 //pickupgoal();
-                rob.claw.setPower(-0.4);
+                rob.claw.setPosition(1);
                 sleep(200);
-                rob.claw.setPower(0);
-                sleep(100);
+                rob.claw.setPosition(0);
+                sleep(200);
 
                 do{
                     rob.driveTrainMovement(speed, Goal.movements.forward);
@@ -572,17 +570,26 @@ public class MarchAuton extends AutonomousControl
             rob.stopDrivetrain();
 
 
-            rob.fly.setPower(-.645);
-            sleep(2500);
+            // shoot
+            rob.shooterRight.setPower(-0.8);
+            rob.shooterLeft.setPower(-0.8);
+            rob.feederRight.setPower(0.5);
+            rob.feederLeft.setPower(0.5);
+            sleep(1000);
 
             for (int i = 0; i <= 2; i++) {
-//                rob.fly.setPower(-.65);
-//                sleep(300);
-                rob.whack.setPosition(0.42);
+                rob.feederRight.setPower(0.5);
+                rob.feederLeft.setPower(0.5);
                 sleep(500);
-                rob.whack.setPosition(0);
+                rob.feederRight.setPower(0);
+                rob.feederLeft.setPower(0);
                 sleep(500);
             }
+
+            rob.shooterRight.setPower(0);
+            rob.shooterLeft.setPower(0);
+            rob.feederRight.setPower(0);
+            rob.feederLeft.setPower(0);
             // move to white line
             rob.driveTrainEncoderMovement(1, 15, 10, 0, Goal.movements.forward);
         }
@@ -593,7 +600,7 @@ public class MarchAuton extends AutonomousControl
         /*
          * An enum to define the skystone position
          */
-/*
+
         public enum RingPosition
         {
             FOUR,
@@ -605,13 +612,14 @@ public class MarchAuton extends AutonomousControl
         /*
          * Some color constants
          */
-//  static final Scalar BLUE = new Scalar(0, 0, 255);
-// static final Scalar GREEN = new Scalar(0, 255, 0);
 
-/*
- * The core values which define the location and size of the sample regions
- */
-/*
+        static final Scalar BLUE = new Scalar(0, 0, 255);
+        static final Scalar GREEN = new Scalar(0, 255, 0);
+
+        /*
+         * The core values which define the location and size of the sample regions
+         */
+
         static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(100,98);
 
         static final int REGION_WIDTH = 100;
@@ -630,7 +638,7 @@ public class MarchAuton extends AutonomousControl
         /*
          * Working variables
          */
-/*
+
         Mat region1_Cb;
         Mat YCrCb = new Mat();
         Mat Cb = new Mat();
@@ -639,13 +647,11 @@ public class MarchAuton extends AutonomousControl
         // Volatile since accessed by OpMode thread w/o synchronization
         public volatile RingPosition position = RingPosition.FOUR;
 
-
- */
         /*
          * This function takes the RGB frame, converts to YCrCb,
          * and extracts the Cb channel to the 'Cb' variable
          */
-/*
+
         void inputToCb(Mat input)
         {
             Imgproc.cvtColor(input, YCrCb, Imgproc.COLOR_RGB2YCrCb);
@@ -702,4 +708,3 @@ public class MarchAuton extends AutonomousControl
         }
     }
 }
-*/

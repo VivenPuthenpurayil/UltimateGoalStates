@@ -122,14 +122,14 @@ public class CurrentTeleop extends TeleOpControl {
 
 
             if(gamepad2.dpad_up){
-                rob.claw.setPower(-.5);
+//                rob.claw.setPower(-.5);
                 // make the up power 1 instead of 0.2
             }
             else if(gamepad2.dpad_down){
-                rob.claw.setPower(0.2);
+//                rob.claw.setPower(0.2);
             }
             else{
-                rob.claw.setPower(0);
+//                rob.claw.setPower(0);
             }
 
             if(gamepad2.dpad_right){
@@ -157,7 +157,7 @@ public class CurrentTeleop extends TeleOpControl {
             if(gamepad2.y){
                 rob.pinch.setPosition(1);
                 sleep(500);
-                rob.encoderMovement(0.75, 8, 20, 0, Goal.movements.backward, rob.claw);
+//                rob.encoderMovement(0.75, 8, 20, 0, Goal.movements.backward, rob.claw);
                 rob.driveTrainEncoderMovement(0.75, 10, 10, 0, Goal.movements.backward);
             }
 
@@ -289,7 +289,7 @@ public class CurrentTeleop extends TeleOpControl {
         flywheelon = false;
         rob.fly.setPower(0);
         sleep(200);
-        rob.claw.setPower(0);
+//        rob.claw.setPower(0);
         sleep(200);
         rob.lifter.setPosition(0.98);
         sleep(200);
