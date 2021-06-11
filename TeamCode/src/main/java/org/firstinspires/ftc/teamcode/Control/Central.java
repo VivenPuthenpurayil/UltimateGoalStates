@@ -25,8 +25,6 @@ public abstract class Central extends LinearOpMode {
         }*/
         this.waitForStart();
         this.runtime.reset();
-
-
     }
 
     public void setRuntime(ElapsedTime runtime) {

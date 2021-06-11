@@ -176,6 +176,7 @@ public class Constants {
 
     public static final String shooterLeftS = "shooterLeft";
     public static final String shooterRightS = "shooterRight";
+    public static final String collectionS = "collectionNew";
 
     public static final String feederLeftS = "feederLeft";
     public static final String feederRightS = "feederRight";

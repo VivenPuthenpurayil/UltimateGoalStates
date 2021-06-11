@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.Control.Goal;
 
 @Autonomous(name="Test Shooter", group = "basic")
 public class TestShooter extends AutonomousControl {
+
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
@@ -17,13 +18,13 @@ public class TestShooter extends AutonomousControl {
         telemetry.addLine("Start!");
         telemetry.update();
 
-        while (opModeIsActive()){
-            rob.feederRight.setPower(1);
-            rob.feederLeft.setPower(-1);
-            rob.shooterRight.setPower(-0.7);
-            rob.shooterLeft.setPower(-0.7);
+        while (opModeIsActive()) {
+            rob.collectionN.setPower(0.8);
+            rob.shooterRight.setPower(-0.8);
+            rob.shooterLeft.setPower(-0.8);
+            rob.feederRight.setPower(0.5);
+            rob.feederLeft.setPower(0.5);
         }
-
 
     }
 }
