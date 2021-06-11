@@ -12,15 +12,15 @@ public class TestCollect extends AutonomousControl {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        setup(runtime, Goal.setupType.collectionsystem);
+        setup(runtime, Goal.setupType.shooter, Goal.setupType.collectionsystem);
         telemetry.addLine("Start!");
         telemetry.update();
 
         while (opModeIsActive()) {
             rob.collection.setPower(.8);
-            sleep(100);
             rob.collectLow.setPower(.8);
-            sleep(100);
+            rob.feederRight.setPower(0.5);
+            rob.feederLeft.setPower(0.5);
         }
 
     }

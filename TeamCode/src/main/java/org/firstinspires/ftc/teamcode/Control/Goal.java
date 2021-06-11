@@ -1,3 +1,4 @@
+
 package org.firstinspires.ftc.teamcode.Control;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -62,10 +63,6 @@ import static org.firstinspires.ftc.teamcode.Control.Constants.shooterRightS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.collectLowS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.collectServoS;
 import static org.firstinspires.ftc.teamcode.Control.Constants.whacker;
-import static org.firstinspires.ftc.teamcode.Control.Constants.feederLeftS;
-import static org.firstinspires.ftc.teamcode.Control.Constants.feederRightS;
-import static org.firstinspires.ftc.teamcode.Control.Constants.shooterLeftS;
-import static org.firstinspires.ftc.teamcode.Control.Constants.shooterRightS;
 
 //import static org.firstinspires.ftc.teamcode.Control.Constants.rightBacks;
 //import static org.firstinspires.ftc.teamcode.Control.Constants.rightFronts;
@@ -95,7 +92,6 @@ public class Goal {
                     setupUltra();
                     setupIMU();
                     setupShooter();
-
                     break;
                 case teleop:
                     setupDrivetrain();
@@ -104,8 +100,8 @@ public class Goal {
                     setupFly();
                     setupWobbleGoalSystem();
                     setupUltra();
-                    setupIMU();
                     setupShooter();
+                    setupIMU();
                     break;
                 case storage:
                     setupStorage();
@@ -239,12 +235,6 @@ public class Goal {
     public ModernRoboticsI2cRangeSensor Back, Right, Front, Left;
 
     public BNO055IMUImpl imu;
-    public DcMotor shooterLeft;
-    public DcMotor shooterRight;
-
-    public CRServo feederLeft;
-    public CRServo feederRight;
-
 
 
 //    public ModernRoboticsI2cRangeSensor leftSense;
@@ -319,19 +309,12 @@ public class Goal {
 
 
     }
-    public void setupShooter() throws InterruptedException{
-        shooterLeft = motor(shooterLeftS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT);
-        shooterRight = motor(shooterRightS, DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT);
-        feederLeft = servo(feederLeftS, CRServo.Direction.FORWARD, 0);
-        feederRight = servo(feederRightS, DcMotorSimple.Direction.FORWARD, 0);
-    }
-
 
     public void setupWobbleGoalSystem() throws InterruptedException {
         claw = servo(claws, Servo.Direction.FORWARD, 0, 1, 0.2);
         pinch = servo(pincher, Servo.Direction.FORWARD, 0, 1, 0.2);
 
-    //    encoder(EncoderMode.OFF, claw);
+        //    encoder(EncoderMode.OFF, claw);
 
     }
 
@@ -712,7 +695,6 @@ public class Goal {
             central.telemetry.addData("count change", countChange);
             central.telemetry.addData("time elapsed", timeElapsed);
             central.telemetry.addData("Actual velocity", Math.abs(countChange/timeElapsed));
-
             central.telemetry.update();
 */
             lastError = error;
@@ -732,8 +714,6 @@ public class Goal {
 
  /*           whack.setPosition(0.45);
             central.sleep(500);
-
-
             whack.setPosition(0);
             central.sleep(500);
 */
@@ -1091,11 +1071,7 @@ public class Goal {
         linearUp(1),
         linearDown(-1),
         clawOut(-1),
-        clawIn(1),
-        shootForward(1, -1),
-        shootBackward(-1, 1),
-        feederForward(1, -1),
-        feederBackward(-1, 1);
+        clawIn(1);
 
 
 
