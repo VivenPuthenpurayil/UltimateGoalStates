@@ -311,7 +311,7 @@ public class Goal {
     }
 
     public void setupWobbleGoalSystem() throws InterruptedException {
-        claw = servo(claws, Servo.Direction.FORWARD, 0, 1, 0.2);
+        claw = servo(claws, Servo.Direction.FORWARD, 0, 1, 1);
         pinch = servo(pincher, Servo.Direction.FORWARD, 0, 1, 0.2);
 
         //    encoder(EncoderMode.OFF, claw);

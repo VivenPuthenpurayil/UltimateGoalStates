@@ -16,10 +16,12 @@ public class TestWobble extends AutonomousControl {
         setup(runtime, Goal.setupType.wobblegoal);
 
         if (opModeIsActive()){
-            rob.claw.setPosition(.8);
             rob.claw.setPosition(0);
+            sleep(1000);
             rob.pinch.setPosition(0.8);
+            sleep(1000);
             rob.pinch.setPosition(0);
+            sleep(1000);
         }
 
 

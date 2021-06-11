@@ -14,17 +14,15 @@ public class TestShooter extends AutonomousControl {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        setup(runtime, Goal.setupType.autonomous);
+        setup(runtime, Goal.setupType.collectionsystem, Goal.setupType.shooter);
         telemetry.addLine("Start!");
         telemetry.update();
 
         while (opModeIsActive()) {
             rob.collection.setPower(.8);
-            sleep(100);
             rob.collectLow.setPower(.8);
-            sleep(100);
-          //  rob.shooterRight.setPower(-0.8);
-           // rob.shooterLeft.setPower(-0.8);
+            rob.shooterRight.setPower(-0.8);
+            rob.shooterLeft.setPower(-0.8);
             rob.feederRight.setPower(0.5);
             rob.feederLeft.setPower(0.5);
 
