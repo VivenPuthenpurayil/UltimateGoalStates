@@ -308,7 +308,7 @@ public class Goal {
 
     public void setupWobbleGoalSystem() throws InterruptedException {
         claw = servo(claws, Servo.Direction.FORWARD, 0, 1, 1);
-        pinch = servo(pincher, Servo.Direction.FORWARD, 0, 1, 0.2);
+        pinch = servo(pincher, Servo.Direction.FORWARD, 0, 1, 0);
         //    encoder(EncoderMode.OFF, claw);
     }
 
@@ -934,22 +934,16 @@ public class Goal {
         double start = getDirection();
         double end = 0;
 
-
-
         while (Math.abs(end - getDirection()) > 1 && central.opModeIsActive()){
             central.telemetry.addData("IMU Orient: ", getDirection());
             central.telemetry.addData("IMU Target: ", target);
             central.telemetry.addData("difference: ", Math.abs(end - getDirection()));
             central.telemetry.addData("end: ", end);
-
-
             central.telemetry.update();
 
             driveTrainMovement(Math.max(Math.abs(end - getDirection())/50, 0.1), (direction == turnside.cw) ? movements.ccw : movements.cw);
-
         }
         stopDrivetrain();
-
     }
 
 

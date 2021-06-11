@@ -40,17 +40,17 @@ import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-@Autonomous(name="States Auton Red Right 1", group = "basic")
+@Autonomous(name="States Auton Red Right 2", group = "basic")
 
 /*
 
-    OG w/ 1 wobble goal
+    1 wobble goal,
     UNTESTED
 
  */
 
 
-public class StatesAutonRedR1 extends AutonomousControl
+public class StatesAutonRedR2 extends AutonomousControl
 {
     SkystoneDeterminationPipeline pipeline;
 

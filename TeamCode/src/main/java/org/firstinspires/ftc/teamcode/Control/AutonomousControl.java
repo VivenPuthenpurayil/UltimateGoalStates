@@ -304,25 +304,46 @@ public abstract class AutonomousControl extends Central {
     }
     public void dropgoal() {
         //drop wobble goal
+        rob.claw.setPosition(0);
+        sleep(200);
         rob.pinch.setPosition(0.8);
         sleep(200);
-    //    rob.claw.setPower(0.4);
+        rob.claw.setPosition(1);
         sleep(200);
-     //   rob.claw.setPower(0);
-        sleep(100);
     }
 
     public void pickupgoal() {
-   //     rob.claw.setPower(-0.4);
-        sleep(300);
-   //     rob.claw.setPower(0);
-        sleep(100);
+        rob.claw.setPosition(0);
+        sleep(200);
         rob.pinch.setPosition(0);
-        sleep(400);
+        sleep(200);
+        rob.claw.setPosition(1);
+        sleep(300);
     }
 
-    
+    public void shoot() {
+        // shoot
+        rob.shooterRight.setPower(-0.8);
+        rob.shooterLeft.setPower(-0.8);
+        rob.feederRight.setPower(0.5);
+        rob.feederLeft.setPower(0.5);
+        sleep(1000);
 
+        for (int i = 0; i <= 2; i++) {
+            rob.feederRight.setPower(0.5);
+            rob.feederLeft.setPower(0.5);
+            sleep(250);
+            rob.feederRight.setPower(0);
+            rob.feederLeft.setPower(0);
+            sleep(250);
+        }
+
+        rob.shooterRight.setPower(0);
+        rob.shooterLeft.setPower(0);
+        rob.feederRight.setPower(0);
+        rob.feederLeft.setPower(0);
+        sleep(100);
+    }
 }
 
 
