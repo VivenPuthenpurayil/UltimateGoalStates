@@ -50,7 +50,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
  */
 
 
-public class StatesAutonRedRR1 extends AutonomousControl
+public class StatesAutonRedR1 extends AutonomousControl
 {
     SkystoneDeterminationPipeline pipeline;
 
