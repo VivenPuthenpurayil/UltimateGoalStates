@@ -40,7 +40,7 @@ import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-@Autonomous(name="States Auton Blue Left", group = "basic")
+@Autonomous(name="States Auton Blue Right", group = "basic")
 
 /*
 
