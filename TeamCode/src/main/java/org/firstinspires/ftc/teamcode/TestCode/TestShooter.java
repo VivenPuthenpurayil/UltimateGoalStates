@@ -20,9 +20,8 @@ public class TestShooter extends AutonomousControl {
 
         while (opModeIsActive()) {
             rob.collection.setPower(.8);
-            rob.collectLow.setPower(.8);
-            rob.shooterRight.setPower(-0.8);
-            rob.shooterLeft.setPower(-0.8);
+            rob.shooterRight.setPower(-.7);
+            rob.shooterLeft.setPower(-.7);
             rob.feederRight.setPower(0.5);
             rob.feederLeft.setPower(0.5);
 

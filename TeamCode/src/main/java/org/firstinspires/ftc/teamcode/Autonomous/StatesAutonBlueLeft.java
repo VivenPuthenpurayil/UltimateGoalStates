@@ -40,7 +40,7 @@ import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-@Autonomous(name="States Auton Red Right 1", group = "basic")
+@Autonomous(name="States Auton Blue Left", group = "basic")
 
 /*
 
@@ -50,8 +50,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
  */
 
 
-public class StatesAutonRedR1 extends AutonomousControl
-{
+public class StatesAutonBlueLeft extends AutonomousControl {
     SkystoneDeterminationPipeline pipeline;
 
     @Override
@@ -93,7 +92,6 @@ public class StatesAutonRedR1 extends AutonomousControl
             double speed = 0.7;
             double speed2 = 0.9;
 
-
             do{
                 rob.driveTrainMovement(0.7, Goal.movements.forward);
                 distanceBack = rob.Back.getDistance(DistanceUnit.INCH);
@@ -132,13 +130,14 @@ public class StatesAutonRedR1 extends AutonomousControl
             sleep(100);
 
             do{
-                rob.driveTrainMovement(speed, Goal.movements.left);
-                distanceRight = rob.Right.getDistance(DistanceUnit.INCH);
+                rob.driveTrainMovement(speed, Goal.movements.right);
+                distanceLeft = rob.Left.getDistance(DistanceUnit.INCH);
 //                telemetry.addData("cm Back", "%.2f cm", distanceBack);
+                telemetry.addData("cm Left", "%.2f cm", distanceLeft);
                 telemetry.update();
 
             }
-            while(distanceRight >1000 || distanceRight < 67 || Double.compare(distanceRight, Double.NaN) == 0 && opModeIsActive());
+            while(distanceLeft >1000 || distanceLeft < 67 || Double.compare(distanceLeft, Double.NaN) == 0 && opModeIsActive());
 
             rob.stopDrivetrain();
             sleep(100);
@@ -150,13 +149,13 @@ public class StatesAutonRedR1 extends AutonomousControl
             if (pipeline.value == 4){
 
                 do{
-                    rob.driveTrainMovement(speed, Goal.movements.right);
-                    distanceRight = rob.Right.getDistance(DistanceUnit.INCH);
+                    rob.driveTrainMovement(speed, Goal.movements.left);
+                    distanceLeft = rob.Left.getDistance(DistanceUnit.INCH);
 //                  telemetry.addData("cm Back", "%.2f cm", distanceBack);
                     telemetry.update();
 
                 }
-                while(distanceRight >1000 || distanceRight > 12 || Double.compare(distanceRight, Double.NaN) == 0 && opModeIsActive());
+                while(distanceLeft >1000 || distanceLeft > 12 || Double.compare(distanceLeft, Double.NaN) == 0 && opModeIsActive());
 
                 rob.stopDrivetrain();
                 sleep(100);
@@ -178,7 +177,7 @@ public class StatesAutonRedR1 extends AutonomousControl
 
                 dropgoal();
 
-                rob.driveTrainEncoderMovement(speed, 20, 10, 0, Goal.movements.backward);
+                rob.driveTrainEncoderMovement(speed, 15, 10, 0, Goal.movements.forward);
 
                 rob.stopDrivetrain();
                 sleep(100);
@@ -190,7 +189,7 @@ public class StatesAutonRedR1 extends AutonomousControl
 //                    telemetry.addData("cm Back", "%.2f cm", dist);
                     telemetry.update();
                 }
-                while(distanceFront >1000 || distanceFront > 40 || Double.compare(distanceFront, Double.NaN) == 0 && opModeIsActive());
+                while(distanceFront >1000 || distanceFront > 80 || Double.compare(distanceFront, Double.NaN) == 0 && opModeIsActive());
 
                 rob.stopDrivetrain();
                 sleep(100);
@@ -199,6 +198,7 @@ public class StatesAutonRedR1 extends AutonomousControl
                 rob.absturn((float) (180), Goal.turnside.cw, 0.9, Goal.axis.center);
 
             }
+
             else if(pipeline.value == 1){
                 //dropping off the first goal
                 do{
@@ -220,14 +220,14 @@ public class StatesAutonRedR1 extends AutonomousControl
                 sleep(200);
 
                 do{
-                    rob.driveTrainMovement(speed2, Goal.movements.right);
+                    rob.driveTrainMovement(speed2, Goal.movements.left);
 
-                    distanceRight = rob.Right.getDistance(DistanceUnit.INCH);
+                    distanceLeft = rob.Left.getDistance(DistanceUnit.INCH);
                     telemetry.addData("cm front", "%.2f cm", distanceRight);
                     telemetry.update();
 
                 }
-                while(distanceRight >1000 || distanceRight > 10 || Double.compare(distanceRight, Double.NaN) == 0 && opModeIsActive());
+                while(distanceLeft >1000 || distanceLeft > 10 || Double.compare(distanceLeft, Double.NaN) == 0 && opModeIsActive());
 
                 rob.stopDrivetrain();
                 sleep(200);
@@ -235,25 +235,25 @@ public class StatesAutonRedR1 extends AutonomousControl
                 do{
                     rob.driveTrainMovement(speed2, Goal.movements.backward);
 
-                    distanceFront = rob.Front.getDistance(DistanceUnit.INCH);
+                    distanceBack = rob.Back.getDistance(DistanceUnit.INCH);
                     telemetry.addData("cm Back", "%.2f cm", distanceFront);
                     telemetry.update();
 
                 }
-                while(distanceFront >1000 || distanceFront > 40 || Double.compare(distanceFront, Double.NaN) == 0 && opModeIsActive());
-
+                while(distanceFront >1000 || distanceBack > 80 || Double.compare(distanceFront, Double.NaN) == 0 && opModeIsActive());
             }
+
             else{
                 //dropping off the first goal
 
                 do{
-                    rob.driveTrainMovement(speed, Goal.movements.right);
-                    distanceRight = rob.Right.getDistance(DistanceUnit.INCH);
+                    rob.driveTrainMovement(speed, Goal.movements.left);
+                    distanceLeft = rob.Left.getDistance(DistanceUnit.INCH);
 //                  telemetry.addData("cm Back", "%.2f cm", distanceBack);
                     telemetry.update();
 
                 }
-                while(distanceRight >1000 || distanceRight > 12 || Double.compare(distanceRight, Double.NaN) == 0 && opModeIsActive());
+                while(distanceLeft >1000 || distanceLeft > 12 || Double.compare(distanceLeft, Double.NaN) == 0 && opModeIsActive());
 
                 rob.stopDrivetrain();
                 sleep(100);
@@ -281,7 +281,7 @@ public class StatesAutonRedR1 extends AutonomousControl
                     telemetry.update();
 
                 }
-                while(distanceBack >1000 || distanceBack > 40 || Double.compare(distanceBack, Double.NaN) == 0 && opModeIsActive());
+                while(distanceBack >1000 || distanceBack > 80 || Double.compare(distanceBack, Double.NaN) == 0 && opModeIsActive());
 
             }
 

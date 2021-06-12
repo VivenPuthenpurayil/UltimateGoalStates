@@ -289,7 +289,7 @@ public class Goal {
     }
 */
 
-    public void setupCollection() throws InterruptedException {
+    public void  setupCollection() throws InterruptedException {
         collection = motor(collections, DcMotorSimple.Direction.REVERSE, DcMotor.ZeroPowerBehavior.BRAKE);
         collectLow = motor(collectLowS, DcMotorSimple.Direction.REVERSE, DcMotor.ZeroPowerBehavior.BRAKE);
         collectServo = servo(collectServoS, Servo.Direction.FORWARD, 0, 1 , 1);

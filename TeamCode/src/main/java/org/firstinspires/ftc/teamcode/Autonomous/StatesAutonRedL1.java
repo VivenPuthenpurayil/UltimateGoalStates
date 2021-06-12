@@ -50,7 +50,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
  */
 
 
-public class StatesAutonRedR1 extends AutonomousControl
+public class StatesAutonRedL1 extends AutonomousControl
 {
     SkystoneDeterminationPipeline pipeline;
 
@@ -93,7 +93,7 @@ public class StatesAutonRedR1 extends AutonomousControl
             double speed = 0.7;
             double speed2 = 0.9;
 
-
+// move to rings
             do{
                 rob.driveTrainMovement(0.7, Goal.movements.forward);
                 distanceBack = rob.Back.getDistance(DistanceUnit.INCH);
@@ -132,7 +132,7 @@ public class StatesAutonRedR1 extends AutonomousControl
             sleep(100);
 
             do{
-                rob.driveTrainMovement(speed, Goal.movements.left);
+                rob.driveTrainMovement(speed, Goal.movements.right);
                 distanceRight = rob.Right.getDistance(DistanceUnit.INCH);
 //                telemetry.addData("cm Back", "%.2f cm", distanceBack);
                 telemetry.update();
