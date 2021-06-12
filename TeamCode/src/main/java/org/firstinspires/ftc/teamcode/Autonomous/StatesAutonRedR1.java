@@ -173,7 +173,7 @@ public class StatesAutonRedR1 extends AutonomousControl
                 rob.stopDrivetrain();
 
                 // rotate 180 degrees
-                rob.teleturn((float) (180), Goal.turnside.cw, 0.9, Goal.axis.center);
+                rob.absturn((float) (180), Goal.turnside.cw, 0.9, Goal.axis.center);
 
                 dropgoal();
 
@@ -195,7 +195,7 @@ public class StatesAutonRedR1 extends AutonomousControl
                 sleep(100);
 
                 // rotate 180 degrees
-                rob.teleturn((float) (180), Goal.turnside.cw, 0.9, Goal.axis.center);
+                rob.absturn((float) (180), Goal.turnside.cw, 0.9, Goal.axis.center);
 
             }
             else if(pipeline.value == 1){

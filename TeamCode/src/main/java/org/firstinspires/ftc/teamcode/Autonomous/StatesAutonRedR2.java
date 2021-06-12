@@ -44,7 +44,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 /*
 
-    1 wobble goal,
+    OG w/ 1 wobble goal
     UNTESTED
 
  */
@@ -127,19 +127,6 @@ public class StatesAutonRedR2 extends AutonomousControl
             while(distanceBack >1000 || distanceBack < 150 || Double.compare(distanceBack, Double.NaN) == 0 && opModeIsActive());
 
             rob.stopDrivetrain();
-
-            sleep(100);
-
-            do{
-                rob.driveTrainMovement(speed, Goal.movements.left);
-                distanceRight = rob.Right.getDistance(DistanceUnit.INCH);
-//                telemetry.addData("cm Back", "%.2f cm", distanceBack);
-                telemetry.update();
-
-            }
-            while(distanceRight >1000 || distanceRight < 67 || Double.compare(distanceRight, Double.NaN) == 0 && opModeIsActive());
-
-            rob.stopDrivetrain();
             sleep(100);
 
             shoot();
@@ -173,7 +160,7 @@ public class StatesAutonRedR2 extends AutonomousControl
                 rob.stopDrivetrain();
 
                 // rotate 180 degrees
-                rob.teleturn((float) (180), Goal.turnside.cw, 0.9, Goal.axis.center);
+                rob.absturn((float) (180), Goal.turnside.cw, 0.9, Goal.axis.center);
 
                 dropgoal();
 
@@ -195,7 +182,7 @@ public class StatesAutonRedR2 extends AutonomousControl
                 sleep(100);
 
                 // rotate 180 degrees
-                rob.teleturn((float) (180), Goal.turnside.cw, 0.9, Goal.axis.center);
+                rob.absturn((float) (180), Goal.turnside.cw, 0.9, Goal.axis.center);
 
             }
             else if(pipeline.value == 1){
